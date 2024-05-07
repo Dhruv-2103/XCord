@@ -1,0 +1,69 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-07-24T09:28:42-04:00",
+    "name": "XCord",
+    "author": "dhruv210shah@gmail.com",
+    "description": "XCord is a proxy server similar to Waterfall, optimized for better performance and stability.",
+    "features": [
+        "eula",
+        "java_version",
+        "pid_limit"
+    ],
+    "docker_images": {
+        "Java 21": "ghcr.io/pterodactyl/yolks:java_21"
+    },
+    "file_denylist": [],
+    "startup": "java -Xms256M -Xmx{{SERVER_MEMORY}}M -XX:+UseG1GC -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}",
+    "config": {
+        "files": "{\r\n    \"config.yml\": {\r\n        \"parser\": \"yaml\",\r\n        \"find\": {\r\n            \"listeners[0].host\": \"0.0.0.0:{{server.build.default.port}}\",\r\n            \"servers.*.address\": {\r\n                \"127.0.0.1\": \"{{config.docker.interface}}\",\r\n                \"localhost\": \"{{config.docker.interface}}\"\r\n            }\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"Listening on \"\r\n}",
+        "logs": "{}",
+        "stop": "end"
+    },
+    "variables": [
+        {
+            "name": "Server Memory",
+            "description": "Amount of memory allocated to the server.",
+            "env_variable": "SERVER_MEMORY",
+            "default_value": "512",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|between:128,8192",
+            "field_type": "range"
+        },
+        {
+            "name": "Server Jar File",
+            "description": "Name of the jar file to use when running XCord.",
+            "env_variable": "SERVER_JARFILE",
+            "default_value": "XCord.jar",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Download Link",
+            "description": "A link to the server jar to download the XCord jar.",
+            "env_variable": "DL_LINK",
+            "default_value": "https://www.dropbox.com/scl/fi/hbqr4spkw5n6ilz82iru4/XCord.jar?rlkey=6xr5f0k677xkelzwdi3q2msof&st=qvv9nzxn&dl=0",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|url",
+            "field_type": "text"
+        },
+        {
+            "name": "XCord License Key",
+            "description": "License key required to run XCord.",
+            "env_variable": "XCORD_LICENSE_KEY",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "string|max:100",
+            "field_type": "text"
+        }
+    ]
+}
