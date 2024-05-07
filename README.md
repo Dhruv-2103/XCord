@@ -1,6 +1,7 @@
 # XCord
 
 ![XCord Logo](https://i.ibb.co/8zMSvCL/download.png)
+
 XCord is an advanced Bungeecord fork designed for high performance, low CPU usage, and packed with a powerful anti-exploit/anti-bot solution, making it a top choice for server administrators seeking enhanced network security and performance.
 
 ## Features
